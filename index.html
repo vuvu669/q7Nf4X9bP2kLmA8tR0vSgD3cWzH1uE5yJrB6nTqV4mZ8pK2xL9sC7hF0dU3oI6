@@ -66,14 +66,23 @@
 const repoUser = "vuvu669";
 const repoName = "q7Nf4X9bP2kLmA8tR0vSgD3cWzH1uE5yJrB6nTqV4mZ8pK2xL9sC7hF0dU3oI6";
 
-fetch(`https://api.github.com/repos/${repoUser}/${repoName}/contents`)
+// Load files from /apk folder
+fetch(`https://api.github.com/repos/${repoUser}/${repoName}/contents/apk`)
     .then(res => res.json())
     .then(files => {
         const container = document.getElementById("file-list");
+
+        if (!Array.isArray(files)) {
+            container.innerHTML = "Không thể tải danh sách file.";
+            return;
+        }
+
+        container.innerHTML = "";
+
         files.forEach(file => {
             if (file.type === "file") {
 
-                const downloadUrl = `../${file.name}`;
+                const downloadUrl = `apk/${file.name}`;
 
                 const card = `
                     <div class="file-card">
@@ -86,10 +95,12 @@ fetch(`https://api.github.com/repos/${repoUser}/${repoName}/contents`)
                         </a>
                     </div>
                 `;
-
                 container.innerHTML += card;
             }
         });
+    })
+    .catch(() => {
+        document.getElementById("file-list").innerHTML = "Lỗi tải dữ liệu.";
     });
 </script>
 
