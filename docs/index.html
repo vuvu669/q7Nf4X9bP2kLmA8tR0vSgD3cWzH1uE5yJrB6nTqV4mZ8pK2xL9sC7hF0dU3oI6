@@ -14,13 +14,11 @@ body {
     margin: 0;
 }
 
-/* Responsive container */
 .container {
     max-width: 900px;
     margin: auto;
 }
 
-/* Card layout */
 .file-card {
     background: white;
     padding: 18px;
@@ -33,14 +31,12 @@ body {
     align-items: center;
 }
 
-/* File name */
 .file-name {
     color: #8B0000;
     word-break: break-word;
     max-width: 80%;
 }
 
-/* Download button */
 .btn {
     background: #8B0000;
     color: white;
@@ -50,12 +46,10 @@ body {
     font-size: 20px;
 }
 
-/* Hover */
 .btn:hover {
     opacity: 0.8;
 }
 
-/* Mobile optimization */
 @media (max-width: 600px) {
     .file-card {
         flex-direction: column;
@@ -80,7 +74,8 @@ body {
 <script>
 const user = "vuvu669";
 const repo = "q7Nf4X9bP2kLmA8tR0vSgD3cWzH1uE5yJrB6nTqV4mZ8pK2xL9sC7hF0dU3oI6";
-const api = `https://api.github.com/repos/${user}/${repo}/contents/`;
+const folder = "docs";
+const api = `https://api.github.com/repos/${user}/${repo}/contents/${folder}`;
 
 fetch(api)
   .then(r => r.json())
