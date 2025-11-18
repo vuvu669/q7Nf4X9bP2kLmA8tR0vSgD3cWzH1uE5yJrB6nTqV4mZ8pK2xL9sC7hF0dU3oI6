@@ -41,10 +41,6 @@
         text-decoration: none;
     }
 
-    .file-name:active {
-        opacity: 0.8;
-    }
-
     .download-btn {
         display: block;
         width: 100%;
@@ -56,10 +52,6 @@
         border-radius: 12px;
         text-decoration: none;
         text-align: center;
-    }
-
-    .download-btn:active {
-        opacity: 0.85;
     }
 </style>
 
@@ -81,13 +73,15 @@ fetch(`https://api.github.com/repos/${repoUser}/${repoName}/contents`)
         files.forEach(file => {
             if (file.type === "file") {
 
+                const downloadUrl = `../${file.name}`;
+
                 const card = `
                     <div class="file-card">
-                        <a class="file-name" href="${file.download_url}" download>
+                        <a class="file-name" href="${downloadUrl}" download>
                             ${file.name}
                         </a>
 
-                        <a class="download-btn" href="${file.download_url}" download>
+                        <a class="download-btn" href="${downloadUrl}" download>
                             Tải về
                         </a>
                     </div>
